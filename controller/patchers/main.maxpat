@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 78.0, 1567.0, 1087.0 ],
+		"rect" : [ 34.0, 79.0, 1285.0, 1087.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -72,7 +72,6 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1236.0, 335.0, 50.0, 49.0 ],
-					"presentation_linecount" : 3,
 					"text" : "post/normal_mix.frag"
 				}
 
@@ -436,12 +435,12 @@
 					"presentation_rect" : [ 320.0, 185.5, 100.0, 41.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 1.0,
 							"parameter_speedlim" : 9.689999999999989,
 							"parameter_shortname" : "container2 _opacity",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
-							"parameter_longname" : "container2 _opacity[1]",
-							"parameter_mmax" : 1.0
+							"parameter_longname" : "container2 _opacity[1]"
 						}
 
 					}
@@ -464,12 +463,12 @@
 					"presentation_rect" : [ 181.0, 170.5, 100.0, 41.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 1.0,
 							"parameter_speedlim" : 9.689999999999989,
 							"parameter_shortname" : "container1 _opacity",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
-							"parameter_longname" : "scene1 _opacity[1]",
-							"parameter_mmax" : 1.0
+							"parameter_longname" : "scene1 _opacity[1]"
 						}
 
 					}
@@ -492,12 +491,12 @@
 					"presentation_rect" : [ 44.5, 155.5, 100.0, 41.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
+							"parameter_mmax" : 1.0,
 							"parameter_speedlim" : 9.689999999999989,
 							"parameter_shortname" : "container0 _opacity",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 1,
-							"parameter_longname" : "live.slider[1]",
-							"parameter_mmax" : 1.0
+							"parameter_longname" : "live.slider[1]"
 						}
 
 					}
@@ -712,8 +711,6 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
-						"node_bin_path" : "",
-						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -1221,9 +1218,9 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-70" : [ "container2 _opacity[1]", "container2 _opacity", 0 ],
 			"obj-68" : [ "live.slider[1]", "container0 _opacity", 0 ],
 			"obj-97" : [ "scene1 _opacity[1]", "container1 _opacity", 0 ],
+			"obj-70" : [ "container2 _opacity[1]", "container2 _opacity", 0 ],
 			"parameterbanks" : 			{
 
 			}
