@@ -2,7 +2,7 @@
 	"name" : "controller",
 	"version" : 1,
 	"creationdate" : 3645417833,
-	"modificationdate" : 3645432411,
+	"modificationdate" : 3646388487,
 	"viewrect" : [ 25.0, 70.0, 300.0, 500.0 ],
 	"autoorganize" : 0,
 	"hideprojectwindow" : 1,
@@ -18,6 +18,11 @@
 ,
 			"shader_select.maxpat" : 			{
 				"kind" : "patcher",
+				"local" : 1
+			}
+,
+			"posteffect_selector.maxpat" : 			{
+				"kind" : "patcher",
 				"local" : 1,
 				"singleton" : 				{
 					"bootpath" : "~/Documents/of_v0.10.1_osx_release/apps/myApps/MultipleSyphonReceiver/controller/patchers",
@@ -31,12 +36,7 @@
 		"code" : 		{
 			"main.js" : 			{
 				"kind" : "javascript",
-				"local" : 1,
-				"singleton" : 				{
-					"bootpath" : "~/Documents/of_v0.10.1_osx_release/apps/myApps/MultipleSyphonReceiver/controller/nodejs",
-					"projectrelativepath" : "./nodejs"
-				}
-
+				"local" : 1
 			}
 
 		}

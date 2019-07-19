@@ -31,7 +31,7 @@ void main() {
         final += texture(s_texture2, st * s_resolution2).xyz * s_opacity2 / sum_opacity;
     }
 
-        final = texture(before_texture, st).xyz;
+    final = texture(before_texture, st * resolution).xyz;
 
     outputColor = vec4(final, 1.0);
 }

@@ -52,22 +52,24 @@ vec3 hsb2rgb( in vec3 c ){
 }
 
 void main() {
+    vec3 final;
+
     vec2 st = gl_FragCoord.xy / resolution.xy;
     float u_time = time;
-    st.x += sin(time);
+    st.x += sin(time)*0.01;
     float n = step(noise(vec2(st.x* 1000., st.y *.5)), 0.3);
 
     float sum_opacity = max(s_opacity0 + s_opacity1 + s_opacity2, 1.0);
     
     if (s_opacity0 > 0.0) {
-        final += texture(s_texture0, st).xyz * s_opacity0 / sum_opacity;
+        final += texture(s_texture0, st * s_resolution0).xyz * s_opacity0 / sum_opacity;
     }
     if (s_opacity1 > 0.0) {
-        final += texture(s_texture1, st).xyz * s_opacity1 / sum_opacity;
+        final += texture(s_texture1, st * s_resolution1).xyz * s_opacity1 / sum_opacity;
     }
     if (s_opacity2 > 0.0) {
-        final += texture(s_texture2, st).xyz * s_opacity2 / sum_opacity;
+        final += texture(s_texture2, st * s_resolution2).xyz * s_opacity2 / sum_opacity;
     }
 
-    out_color = vec4( * n)), 1.);
+    out_color = vec4(final * n, 1.);
 }

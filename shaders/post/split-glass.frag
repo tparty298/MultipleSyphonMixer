@@ -6,6 +6,9 @@ uniform sampler2DRect before_texture;
 uniform float s_opacity0;
 uniform float s_opacity1;
 uniform float s_opacity2;
+uniform vec2 s_resolution0;
+uniform vec2 s_resolution1;
+uniform vec2 s_resolution2;
 
 uniform vec2 resolution;
 uniform vec4 seeds;
@@ -18,21 +21,21 @@ float fbm(vec2 uv,float d){float sum=0.;float amp=.7;for(int i=0;i<4;++i){sum+=n
 
 void main() {
     vec3 final;
-    vec2 b_st = gl_FragCoord.xy / u_resolution;
+    vec2 b_st = gl_FragCoord.xy / resolution;
     float divide = 100.;
-    vec2 st = (fract(b_st * divide) + floor(b_st * divide + fbm(vec2(seeds.x, b_st.y), 1.2)))/ divide * u_resolution;
+    vec2 st = (fract(b_st * divide) + floor(b_st * divide + fbm(vec2(seeds.x, b_st.y), 1.2)))/ divide;
 
 
     float sum_opacity = max(s_opacity0 + s_opacity1 + s_opacity2, 1.0);
 
     if (s_opacity0 > 0.0) {
-        final += texture(s_texture0, st).xyz * s_opacity0 / sum_opacity;
+        final += texture(s_texture0, st * s_resolution0).xyz * s_opacity0 / sum_opacity;
     }
     if (s_opacity1 > 0.0) {
-        final += texture(s_texture1, st).xyz * s_opacity1 / sum_opacity;
+        final += texture(s_texture1, st * s_resolution1).xyz * s_opacity1 / sum_opacity;
     }
     if (s_opacity2 > 0.0) {
-        final += texture(s_texture2, st).xyz * s_opacity2 / sum_opacity;
+        final += texture(s_texture2, st * s_resolution2).xyz * s_opacity2 / sum_opacity;
     }
     
     outputColor = vec4(final, 1.0);

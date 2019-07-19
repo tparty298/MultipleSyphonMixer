@@ -7,6 +7,9 @@ uniform sampler2DRect before_texture;
 uniform float s_opacity0;
 uniform float s_opacity1;
 uniform float s_opacity2;
+uniform vec2 s_resolution0;
+uniform vec2 s_resolution1;
+uniform vec2 s_resolution2;
 
 uniform vec2 resolution;
 uniform vec2 u_mouse;
@@ -45,8 +48,8 @@ float noise (in vec2 st) {
 
 
 void main() {
-    vec2 st = gl_FragCoord.xy;
-    vec2 nst =  gl_FragCoord.xy / u_resolution.xy * 2. -1.;
+    vec2 st = gl_FragCoord.xy / resolution;
+    vec2 nst =  gl_FragCoord.xy / resolution.xy * 2. -1.;
     float u_time = time;
 
     float size = 20. * seeds.x + 2.;
@@ -61,20 +64,20 @@ void main() {
 
     vec3 a;
     if (s_opacity0 > 0.0) {
-        a = texture(s_texture0, st).xyz * s_opacity0 / sum_opacity;
+        a = texture(s_texture0, st * s_resolution0).xyz * s_opacity0 / sum_opacity;
     }
 
     vec3 b;
     if (s_opacity1 > 0.0) {
-        b = texture(s_texture1, st).xyz * s_opacity1 / sum_opacity;
+        b = texture(s_texture1, st * s_resolution1).xyz * s_opacity1 / sum_opacity;
     }
     
     vec3 final = mix(a,b,n);
 
     // final = mix(final, texture(before_texture, st).xyz,  seeds.z * .01 + .98);
     // final *= 1.0000001;
-    // final *= length((gl_FragCoord.xy*2. - u_resolution)/min(u_resolution.x, u_resolution.y));
-    final *= (1.0 - length((gl_FragCoord.xy*2. - u_resolution)/min(u_resolution.x, u_resolution.y)))*.4+.6;
+    // final *= length((gl_FragCoord.xy*2. - resolution)/min(resolution.x, resolution.y));
+    final *= (1.0 - length((gl_FragCoord.xy*2. - resolution)/min(resolution.x, resolution.y)))*.4+.6;
 
     out_color = vec4(final, 1.);
 }

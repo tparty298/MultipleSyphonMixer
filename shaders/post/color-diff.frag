@@ -6,12 +6,15 @@ uniform sampler2DRect s_texture2;
 uniform float s_opacity0;
 uniform float s_opacity1;
 uniform float s_opacity2;
+uniform vec2 s_resolution0;
+uniform vec2 s_resolution1;
+uniform vec2 s_resolution2;
 
 uniform vec2 resolution;
 uniform vec4 seeds;
 uniform float time;
 
-vec2 st = gl_FragCoord.xy;
+vec2 st = gl_FragCoord.xy / resolution;
 
 
 out vec4 outputColor;
@@ -27,19 +30,19 @@ void main() {
 
 
     if (s_opacity0 > 0.0) {
-        final.r += texture(s_texture0, st + diff).r * s_opacity0/ sum_opacity;
-        final.g += texture(s_texture0, st).g * s_opacity0/ sum_opacity;
-        final.b += texture(s_texture0, st - diff).b * s_opacity0/ sum_opacity;
+        final.r += texture(s_texture0, st * s_resolution0 + diff).r * s_opacity0/ sum_opacity;
+        final.g += texture(s_texture0, st * s_resolution0).g * s_opacity0/ sum_opacity;
+        final.b += texture(s_texture0, st * s_resolution0 - diff).b * s_opacity0/ sum_opacity;
     }
     if (s_opacity1 > 0.0) {
-        final.r += texture(s_texture1, st + diff).r * s_opacity1 / sum_opacity;
-        final.g += texture(s_texture1, st).g * s_opacity1 / sum_opacity;
-        final.b += texture(s_texture1, st - diff).b * s_opacity1 / sum_opacity;
+        final.r += texture(s_texture1, st * s_resolution1 + diff).r * s_opacity1 / sum_opacity;
+        final.g += texture(s_texture1, st * s_resolution1).g * s_opacity1 / sum_opacity;
+        final.b += texture(s_texture1, st * s_resolution1 - diff).b * s_opacity1 / sum_opacity;
     }
     if (s_opacity2 > 0.0) {
-        final.r += texture(s_texture2, st + diff).r * s_opacity2 / sum_opacity;
-        final.g += texture(s_texture2, st).g * s_opacity2 / sum_opacity;
-        final.b += texture(s_texture2, st - diff).b * s_opacity2 / sum_opacity ;
+        final.r += texture(s_texture2, st * s_resolution2 + diff).r * s_opacity2 / sum_opacity;
+        final.g += texture(s_texture2, st * s_resolution2).g * s_opacity2 / sum_opacity;
+        final.b += texture(s_texture2, st * s_resolution2 - diff).b * s_opacity2 / sum_opacity ;
     }
 
     outputColor = vec4(final, 1.0);

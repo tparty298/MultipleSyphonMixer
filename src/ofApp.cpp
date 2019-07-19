@@ -22,8 +22,8 @@ void ofApp::setup(){
     
     pingPong[0].allocate(ofGetWidth(), ofGetHeight());
     pingPong[1].allocate(ofGetWidth(), ofGetHeight());
-    pingPong[0].getTexture().getTextureData().bFlipTexture = true;
-    pingPong[1].getTexture().getTextureData().bFlipTexture = true;
+    pingPong[0].getTexture().getTextureData().bFlipTexture = false;
+    pingPong[1].getTexture().getTextureData().bFlipTexture = false;
     
     screen_plane.set(screen_size.x*2., screen_size.y*2.);
     screen_plane.setPosition(0, 0, 0);
@@ -75,7 +75,7 @@ void ofApp::draw(){
     
     post_processing.setUniform4f("seeds", seeds);
     post_processing.setUniform1f("time", ofGetElapsedTimef());
-    post_processing.setUniformTexture("before_texture", pingPong[1], 4);
+    post_processing.setUniformTexture("before_texture", pingPong[1], 3);
     
     post_processing.setUniform2f("resolution", screen_size);
     

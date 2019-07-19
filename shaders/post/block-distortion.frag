@@ -48,7 +48,7 @@ float noise (in vec2 st) {
 
 
 void main() {
-    vec2 nst =  gl_FragCoord.xy / u_resolution.xy * 2. -1.;
+    vec2 nst =  gl_FragCoord.xy / resolution.xy * 2. -1.;
     float u_time = time;
     float size = 10.;
 
@@ -57,22 +57,22 @@ void main() {
     float n = noise(vec2(floor(nst.x* size)/size, floor(nst.y * size * 2.)/size/2.));
     
     nst.x += n;
-    vec2 st = (nst + 1.0)*.25 * u_resolution;
+    vec2 st = (nst + 1.0)*.25;
 
     float sum_opacity = max(s_opacity0 + s_opacity1 + s_opacity2, 1.0);
     vec3 final;
     
     if (s_opacity0 > 0.0) {
-        final += texture(s_texture0, st).xyz * s_opacity0 / sum_opacity;
+        final += texture(s_texture0, st * s_resolution0).xyz * s_opacity0 / sum_opacity;
     }
     if (s_opacity1 > 0.0) {
-        final += texture(s_texture1, st).xyz * s_opacity1 / sum_opacity;
+        final += texture(s_texture1, st * s_resolution1).xyz * s_opacity1 / sum_opacity;
     }
     if (s_opacity2 > 0.0) {
-        final += texture(s_texture2, st).xyz * s_opacity2 / sum_opacity;
+        final += texture(s_texture2, st * s_resolution2).xyz * s_opacity2 / sum_opacity;
     }
     // final *= 1.0000001;
-    final *= (1.0 - length((gl_FragCoord.xy*2. - u_resolution)/min(u_resolution.x, u_resolution.y)))*.4+.6;
+    final *= (1.0 - length((gl_FragCoord.xy*2. - resolution)/min(resolution.x, resolution.y)))*.4+.6;
 
     out_color = vec4(final, 1.);
 }
