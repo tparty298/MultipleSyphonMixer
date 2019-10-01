@@ -14,11 +14,19 @@ uniform vec2 resolution;
 uniform vec4 seeds;
 uniform float time;
 
-vec2 st = gl_FragCoord.xy / resolution;
+
 
 out vec4 outputColor;
 
 void main() {
+    vec2 st;
+
+    if (true) {
+        st = vec2(gl_FragCoord.x, gl_FragCoord.y) / resolution;
+    } else {
+        st = gl_FragCoord.xy / resolution;
+    }
+
     vec3 final;
     vec2 diff = vec2(seeds.x * 10.);
 

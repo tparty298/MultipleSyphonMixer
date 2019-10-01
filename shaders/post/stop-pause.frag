@@ -23,7 +23,7 @@ void main() {
 
     if (s_opacity0 > 0.0) {
         final += texture(s_texture0, st * s_resolution0).xyz * s_opacity0 / sum_opacity;
-    }œ
+    }
     if (s_opacity1 > 0.0) {
         final += texture(s_texture1, st * s_resolution1).xyz * s_opacity1 / sum_opacity;
     }

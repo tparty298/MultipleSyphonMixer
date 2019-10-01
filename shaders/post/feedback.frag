@@ -2,7 +2,8 @@
 uniform sampler2DRect s_texture0;
 uniform sampler2DRect s_texture1;
 uniform sampler2DRect s_texture2;
-uniform sampler2D before_texture;
+uniform sampler2DRect before_texture;
+
 uniform float s_opacity0;
 uniform float s_opacity1;
 uniform float s_opacity2;
@@ -31,6 +32,8 @@ void main() {
         final += texture(s_texture2, st * s_resolution2).xyz * s_opacity2 / sum_opacity;
     }
 
-    final = mix(final, texture(before_texture, gl_FragCoord.xy/resolution).xyz, seeds.z * .01 + .999);
+    final = mix(final, texture(before_texture, gl_FragCoord.xy).xyz, seeds.z * .01 + .999);
+    // final += texture(before_texture, gl_FragCoord.xy).xyz;
+    final = vec3(1.0);
     outputColor = vec4(final, 1.0);
 }

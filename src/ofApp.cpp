@@ -4,9 +4,9 @@
 void ofApp::setup(){
     ofSetBackgroundColor(0);
 //    ofSetVerticalSync(false);
-    ofDisableArbTex();
+//    ofDisableArbTex();
     
-    ofEnableAlphaBlending();
+//    ofEnableAlphaBlending();
     ofHideCursor();
     
     // post_processingのソース変更
@@ -19,11 +19,6 @@ void ofApp::setup(){
     manager = new SyphonClientManager();
     
     screen_size = glm::vec2(ofGetWidth(), ofGetHeight());
-    
-    pingPong[0].allocate(ofGetWidth(), ofGetHeight());
-    pingPong[1].allocate(ofGetWidth(), ofGetHeight());
-    pingPong[0].getTexture().getTextureData().bFlipTexture = false;
-    pingPong[1].getTexture().getTextureData().bFlipTexture = false;
     
     screen_plane.set(screen_size.x*2., screen_size.y*2.);
     screen_plane.setPosition(0, 0, 0);
@@ -84,11 +79,11 @@ void ofApp::draw(){
     post_processing.end();
     pingPong[0].end();
     
-    swap(pingPong[0], pingPong[1]);
-    
     ofSetColor(255);
     
     pingPong[1].draw(0,0,screen_size.x, screen_size.y);
+    
+    swap(pingPong[0], pingPong[1]);
 
 }
 
@@ -102,6 +97,10 @@ void ofApp::windowResized(int x, int y) {
     screen_plane.set(screen_size.x*2., screen_size.y*2.);
     manager->windowResized(screen_size);
     
+//    ofEnableArbTex();
     pingPong[0].allocate(ofGetWidth(), ofGetHeight());
     pingPong[1].allocate(ofGetWidth(), ofGetHeight());
+    
+    pingPong[0].getTexture().getTextureData().bFlipTexture = true;
+    pingPong[1].getTexture().getTextureData().bFlipTexture = true;
 };

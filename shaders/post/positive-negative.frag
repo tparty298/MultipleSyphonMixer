@@ -2,7 +2,7 @@
 uniform sampler2DRect s_texture0;
 uniform sampler2DRect s_texture1;
 uniform sampler2DRect s_texture2;
-uniform sampler2D before_texture;
+uniform sampler2DRect before_texture;
 uniform float s_opacity0;
 uniform float s_opacity1;
 uniform float s_opacity2;
@@ -37,7 +37,7 @@ void main() {
     if (s_opacity2 > 0.0) {
         final += texture(s_texture2, st * s_resolution2).xyz * s_opacity2 / sum_opacity;
     }
-    vec3 n_final = mix(final, 1.0 - texture(before_texture,st).yxz, seeds.x*10. + 0.75);
+    vec3 n_final = mix(final, 1.0 - texture(before_texture,gl_FragCoord.xy).yxz, seeds.x*10. + 0.95);
     
         n_final = pow(n_final, vec3(21.0));
         n_final.r *= 0.3 + seeds.x;
